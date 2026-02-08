@@ -6,13 +6,7 @@
 
 A robust Command Line Interface (CLI) Warehouse Management System built with **Go**. This application manages inventory, customer accounts, and sales transactions efficiently using a custom file-based database system. It features role-based access control (RBAC) to ensure secure operations.
 
-## 📑 Table of Contents
-- [Features](#-features)
-- [Project Structure](#-project-structure)
-- [System Architecture](#-system-architecture)
-- [User Roles & Permissions](#-user-roles--permissions)
-- [Getting Started](#-getting-started)
-- [Data Storage Format](#-data-storage-format)
+---
 
 ## 🚀 Features
 
@@ -22,6 +16,8 @@ A robust Command Line Interface (CLI) Warehouse Management System built with **G
 - **💳 Transaction Processing:** Automated handling of sales, updating both inventory and customer balances instantly.
 - **📊 Reporting:** Generate insights on top-selling products and high-value customers.
 - **💾 Persistence:** All data is automatically saved to local text files, ensuring no data loss upon exit.
+  
+---
 
 ## 📂 Project Structure
 ```bash
@@ -32,7 +28,7 @@ A robust Command Line Interface (CLI) Warehouse Management System built with **G
 ├── customer.txt      # Database for customer information
 └── transaction.txt   # Log file for recorded transactions
 ```
-
+---
 ## 🏗 System Architecture
 
 The system uses a flat-file database approach. It loads data from `.txt` files into memory slices upon startup (structs), performs operations in memory for speed, and writes changes back to the files to ensure persistence.
@@ -47,6 +43,7 @@ Access is determined by the first digit of the username provided in `staff.txt`.
 | **Employee** | `2` | Sales focus: View inventory/customers, **process transactions**. |
 | **Warehouse Staff** | `3` | Inventory focus: View inventory, **add new stock**. |
 
+---
 ## 🛠 Getting Started
 
 ### Prerequisites
@@ -68,7 +65,7 @@ cd Warehouse_System
 - `customer.txt`
 - `transaction.txt`
 
-## 3. Run the Application
+3. **Run the Application**
 ```bash
 go run main.go
 ```
