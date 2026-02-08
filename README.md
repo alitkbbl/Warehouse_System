@@ -1,89 +1,109 @@
-# Warehouse Management System
+# 📦 Warehouse Management System
 
-A simple warehouse management system built with Go that handles products, customers, and transactions with role-based access control.
+[![Go Version](https://img.shields.io/badge/Go-1.18%2B-00ADD8?style=flat&logo=go)](https://go.dev/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/alitkbbl/Warehouse_System)
 
-## Features
+A robust Command Line Interface (CLI) Warehouse Management System built with **Go**. This application manages inventory, customer accounts, and sales transactions efficiently using a custom file-based database system. It features role-based access control (RBAC) to ensure secure operations.
 
-*   Role-based authentication (admin, employee, warehouse staff)
-*   Product inventory management
-*   Customer account management
-*   Transaction processing
-*   Sales reporting (top products and customers)
+## 📑 Table of Contents
+- [Features](#-features)
+- [System Architecture](#-system-architecture)
+- [User Roles & Permissions](#-user-roles--permissions)
+- [Getting Started](#-getting-started)
+- [Data Storage Format](#-data-storage-format)
+- [Business Logic](#-business-logic)
+- [Project Structure](#-project-structure)
 
-## User Roles
+## 🚀 Features
 
-| Role | Permissions |
-| :--- | :--- |
-| Admin | View inventory, view customers, view reports |
-| Employee | View inventory, view customers, process transactions |
-| Warehouse Staff | View inventory, add new products |
+- **🔐 Role-Based Authentication:** Secure login system differentiating between Admins, Employees, and Warehouse Staff.
+- **📦 Inventory Management:** Real-time tracking of product names, quantities, and unit prices.
+- **busts_in_silhouette: Customer Management:** Manage customer IDs, names, and credit balances.
+- **💳 Transaction Processing:** Automated handling of sales, updating both inventory and customer balances instantly.
+- **📊 Reporting:** Generate insights on top-selling products and high-value customers.
+- **💾 Persistence:** All data is automatically saved to local text files, ensuring no data loss upon exit.
 
-## Project Structure
-.
-├── main.go # Main application file
-├── staff.txt # User credentials and roles
-├── warehouse.txt # Product inventory data
-├── customer.txt # Customer information
-└── transaction.txt # Transaction records
+## 🏗 System Architecture
 
+The system uses a flat-file database approach. It loads data from `.txt` files into memory slices upon startup (structs), performs operations in memory for speed, and writes changes back to the files to ensure persistence.
 
-## Data File Formats
+## 👥 User Roles & Permissions
 
-### staff.txt
+Access is determined by the first digit of the username provided in `staff.txt`.
 
+| Role | Username Prefix | Capabilities |
+| :--- | :---: | :--- |
+| **Admin** | `1` | Full access: View inventory, manage customers, view sales reports. |
+| **Employee** | `2` | Sales focus: View inventory/customers, **process transactions**. |
+| **Warehouse Staff** | `3` | Inventory focus: View inventory, **add new stock**. |
+
+## 🛠 Getting Started
+
+### Prerequisites
+- **Go** (Golang) installed on your machine (version 1.18 or higher recommended).
+
+### Installation
+
+1.  **Clone the repository:**
+```bash
+git clone https://github.com/alitkbbl/Warehouse_System.git
+cd Warehouse_System
+```
+2. **Verify Data Files**
+
+   Ensure the following files exist in the root directory (or create them if missing):
+
+- `staff.txt`
+- `warehouse.txt`
+- `customer.txt`
+- `transaction.txt`
+
+## 3. Run the Application
+```bash
+go run main.go
+```
+
+---
+
+## 💾 Data Storage Format
+
+The application uses a custom flat-file database system. Data is parsed line-by-line from specific text files located in the root directory.
+
+### `staff.txt` (Credentials)
+Stores user credentials in pairs (2 lines per user). The first digit of the username determines the role.
+```text
 username
 password
 username
 password
-...
+```
+### `warehouse.txt` (Inventory)
+Stores product details in blocks of 3 lines.
 text
-
-
-### warehouse.txt
-
 product_name
-inventory_quantity
-unit_price
-...
+quantity (integer)
+unit_price (float)
+
+### `customer.txt` (Clients)
+Stores customer information in blocks of 4 lines.
 text
-
-
-### customer.txt
-
 first_name
 last_name
-customer_id
-account_balance
-...
+customer_id (unique integer)
+account_balance (float)
+
+### `transaction.txt` (History)
+Stores transaction records in blocks of 4 lines.
 text
-
-
-### transaction.txt
-
 customer_id
 product_name
 quantity
-completed_status
-...
-text
+status (e.g., completed)
 
+---
 
-## Installation & Usage
+## 📜 License
 
-1.  Ensure Go is installed on your system.
-2.  Place all data files (`staff.txt`, `warehouse.txt`, `customer.txt`, `transaction.txt`) in the same directory as the source code or the executable.
-3.  Run the application:
-    ```bash
-    go run main.go
-    ```
-4.  Login with credentials from `staff.txt`:
-    *   Usernames starting with `1`: Admin
-    *   Usernames starting with `2`: Employee
-    *   Usernames starting with `3`: Warehouse staff
-
-## Notes
-
-*   Customer accounts can have a negative balance up to -200,000.
-*   Transactions are only processed when sufficient inventory and customer credit are available.
-*   All data is persisted to text files after modifications.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
