@@ -8,12 +8,11 @@ A robust Command Line Interface (CLI) Warehouse Management System built with **G
 
 ## 📑 Table of Contents
 - [Features](#-features)
+- [Project Structure](#-project-structure)
 - [System Architecture](#-system-architecture)
 - [User Roles & Permissions](#-user-roles--permissions)
 - [Getting Started](#-getting-started)
 - [Data Storage Format](#-data-storage-format)
-- [Business Logic](#-business-logic)
-- [Project Structure](#-project-structure)
 
 ## 🚀 Features
 
@@ -23,6 +22,16 @@ A robust Command Line Interface (CLI) Warehouse Management System built with **G
 - **💳 Transaction Processing:** Automated handling of sales, updating both inventory and customer balances instantly.
 - **📊 Reporting:** Generate insights on top-selling products and high-value customers.
 - **💾 Persistence:** All data is automatically saved to local text files, ensuring no data loss upon exit.
+
+## 📂 Project Structure
+```bash
+.
+├── main.go           # Main application source code and logic
+├── staff.txt         # Database for user credentials and roles
+├── warehouse.txt     # Database for product inventory
+├── customer.txt      # Database for customer information
+└── transaction.txt   # Log file for recorded transactions
+```
 
 ## 🏗 System Architecture
 
